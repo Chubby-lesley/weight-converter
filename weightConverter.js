@@ -1,4 +1,4 @@
- // select items
+ // Select items
 
 const kg = document.querySelector('.kg-display');
 const gram = document.querySelector('.gram-display');
@@ -8,7 +8,36 @@ const ounce = document.querySelector('.ounce-display');
 const convert = document.getElementById('convert-btn');
 const reset = document.getElementById('reset-btn');
 
+
+// Add event listener to convert btn and pass in the convertWeight function
+
 convert.addEventListener('click', (e) => {
+	convertWeight();	
+})
+
+
+// Add event listener to enter key and pass in convertWeight function
+
+window.addEventListener('keydown', (e) =>{
+	if (e.key === 'Enter') {
+		convertWeight();
+	}
+})
+
+
+// Add event Listener to reset btn and pass empty string as display values
+
+reset.addEventListener('click', (e) => {
+	kg.value = '';
+	gram.value = '';
+	pound.value = '';
+	ounce.value = '';
+})
+
+
+// function to convert weight
+
+function convertWeight() {
 	if (kg.value.length > 0) {
 		gram.value = kg.value * 1000;
 		pound.value = kg.value * 2.2046;
@@ -33,11 +62,5 @@ convert.addEventListener('click', (e) => {
 		pound.value = ounce.value / 16;
 	}
 
-})
+}
 
-reset.addEventListener('click', (e) => {
-	kg.value = '';
-	gram.value = '';
-	pound.value = '';
-	ounce.value = '';
-})
